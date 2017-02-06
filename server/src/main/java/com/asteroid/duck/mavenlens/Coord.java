@@ -5,8 +5,7 @@ package com.asteroid.duck.mavenlens;
 
 import org.apache.commons.lang3.text.StrSubstitutor;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -60,6 +59,34 @@ public class Coord {
         values.put("type", type);
         StrSubstitutor sub = new StrSubstitutor(values);
         return sub.replace(FORMAT);
+    }
+    
+    public List<String> components() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(groupId);
+        result.add(artifactId);
+        if (platformId != null) result.add(platformId);
+        result.add(version);
+        if (classifier != null) result.add(classifier);
+        if (!type.equals("jar")) result.add(type);
+        return result;
+    }
+    
+    public String colonForm() {
+        Iterator<String> iter = components().iterator();
+        StringBuilder result = new StringBuilder();
+        while(iter.hasNext()) {
+            result.append(iter.next());
+            if (iter.hasNext()) {
+                result.append(':');
+            }
+        }
+        return result.toString();
+    }
+
+    @Override
+    public String toString() {
+        return uriForm();
     }
 
     @Override
