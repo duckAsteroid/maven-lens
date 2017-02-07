@@ -52,12 +52,7 @@ public class Server {
                 running = true;
                 server = Undertow.builder()
                         .addHttpListener(port, "localhost")
-                        .setHandler(new HttpHandler() {
-                            @Override
-                            public void handleRequest(final HttpServerExchange exchange) throws Exception {
-                                handleHttpRequest(exchange);
-                            }
-                        }).build();
+                        .setHandler(exchange -> handleHttpRequest(exchange)).build();
                 server.start();
             }
             return this;
