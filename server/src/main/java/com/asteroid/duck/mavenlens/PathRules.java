@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 Ford Motor Co.
+ * Copyright (c) 2017 Dr. Chris Senior
  */
 package com.asteroid.duck.mavenlens;
 
