@@ -7,5 +7,6 @@ repositories {
 dependencies {
     compile 'io.undertow:undertow-core:1.4.+'
     compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'commons-io:commons-io:2.5'
     testCompile 'junit:junit:4.+'
 }

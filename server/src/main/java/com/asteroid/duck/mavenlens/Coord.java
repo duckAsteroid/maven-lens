@@ -34,9 +34,28 @@ public class Coord {
         this(groupId, artifactId, null, version, null, "jar");
     }
 
-    public static Coord parse(String str) {
+    public static Coord parseColon(String str) {
         String[] strings = str.split(":");
         return from(strings);
+    }
+
+    public static Coord parseUri(String str) {
+        if (str.startsWith("/")) {
+            str = str.substring(1);
+        }
+        int lastDotIndex = str.lastIndexOf('.');
+        if (lastDotIndex <= 0) {
+            throw new IllegalArgumentException("No . in path");
+        }
+        String type = str.substring(lastDotIndex + 1);
+        int lastSlash = str.lastIndexOf('/');
+        if (lastSlash <= 0) {
+            throw new IllegalArgumentException("No / in path");
+        }
+        String dirs = str.substring(0, lastSlash);
+        List<String> path = Arrays.asList(dirs.split("/"));
+        String version = path.get(path.size() - 1);
+        return null;
     }
 
     public static Coord from(final String ... args) {

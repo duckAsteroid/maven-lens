@@ -18,10 +18,16 @@ public class CoordTest {
 
     @Test
     public void parse() {
-        Coord parsed = Coord.parse("org.simple:simple:4.0.0");
+        Coord parsed = Coord.parseColon("org.simple:simple:4.0.0");
         assertEquals(simple, parsed);
-        parsed = Coord.parse("org.complex:some-very-hard:win32:4.0.0-SNAPSHOT:release:war");
+        parsed = Coord.parseColon("org.complex:some-very-hard:win32:4.0.0-SNAPSHOT:release:war");
         assertEquals(complex, parsed);
+    }
+
+    @Test
+    public void parseUri() {
+        String path = "/maven/junit/junit/4.11/junit-4.11.pom";
+        Coord c = Coord.parseUri(path);
     }
 
     @Test
